@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSIS SMA Angkasa 1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1a56db;
+            --secondary: #0f2e6f;
+            --accent: #ff8400;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+    /* MENGUBAH BACKGROUND AWAL: Menjadi transparan total */
+    background: transparent;
+    color: white;
+    padding: 1rem 0;
+    
+    /* MENGUBAH POSITION: Menggunakan fixed agar melayang sempurna di atas hero banner */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    
+    /* Menghapus box-shadow bawaan saat di atas agar tidak bergaris */
+    box-shadow: none; 
+    
+    /* Efek transisi halus saat perubahan warna */
+    transition: all 0.4s ease;
+}
+
+/* === KONDISI BARU: KETIKA HALAMAN DI-SCROLL === */
+header.scrolled {
+    /* Mengembalikan background gradient solid Anda saat di-scroll ke bawah */
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 0.7rem 0; /* Membuat header sedikit lebih ramping (estetik) */
+}
+
+/* Sisa kode CSS Anda di bawah ini tetap dipertahankan dengan penyesuaian transisi teks */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center; /* Diubah ke center agar gambar dan teks sejajar vertikal */
+    margin-left: -100px;
+    gap: 10px;
+}
+
+.logo img {
+    height: 70px;
+    width: auto;
+}
+
+.logo-text h1 {
+    font-size: 30px;
+    margin-bottom: -10px;
+    color: white; /* Memastikan warna teks tetap putih secara eksplisit */
+    font-family: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    transition: color 0.4s ease;
+}
+
+.logo-text p {
+    font-size: 20px;
+    opacity: 0.9;
+    color: white;
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    transition: color 0.4s ease;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    margin-right: -100px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+        /* Hero Section */
+      .hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('image/bg.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    padding: 0 10%;
+}
+
+.hero-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.hero-tag {
+    background-color:#ff8400;
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.highlight-yellow {
+    color: #ff8400;
+}
+
+
+.hero-description {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 12px 28px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-yellow {
+    background-color: #ff8400;
+    color: #ffffff;
+}
+
+.btn-yellow:hover {
+    background-color: #ff8400;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: #ff8400;
+    border: 1.5px solid #ff8400;
+}
+
+.btn-outline:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Sisi Kanan (Logo) */
+.hero-logo {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hero-logo img {
+    max-width: 420px; 
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.5)); 
+}
+
+
+@media (max-width: 992px) {
+    .hero-container {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    
+    .hero-logo {
+        justify-content: center;
+    }
+    
+    .hero-logo img {
+        max-width: 250px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+}
+
+        /* About Section */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-text {
+            flex: 1;
+            font-size:18px
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Pembina Section */
+.Pembina {
+    background-color: #f1f5f9;
+    padding: 60px 20px;
+}
+
+.Pembina-cards {
+    display: grid;
+    /* Menentukan ukuran grid yang ideal dan pas untuk 4 kartu */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* PERBAIKAN UTAMA: Mencegah kartu ditarik melar secara vertikal */
+    align-items: start; 
+}
+
+.Pembina-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* PERBAIKAN: Menghapus width/height statis yang merusak ukuran */
+    width: 100%; 
+    height: auto; 
+}
+
+.Pembina-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.Pembina-image {
+    /* Mengunci tinggi area gambar agar seragam & presisi di semua kartu */
+    height: 220px; 
+    width: 100%;
+    overflow: hidden;
+    background-color: #e2e8f0; /* Warna placeholder jika gambar rusak/belum dimuat */
+}
+
+.Pembina-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Memperbaiki selector hover gambar dari kode lama kamu */
+.Pembina-card:hover .Pembina-image img {
+    transform: scale(1.1);
+}
+
+.Pembina-content {
+    padding: 25px;
+}
+
+.Pembina-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: var(--secondary, #1e3a8a);
+}
+
+.Pembina-content p {
+    font-size: 0.95rem;
+    color: #64748b;
+    margin: 0;
+}
+        /* Programs Section */
+        .programs {
+            background-color: #f1f5f9;
+        }
+
+        .program-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .program-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .program-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .program-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .program-card:hover .program-image img {
+            transform: scale(1.1);
+        }
+
+        .program-content {
+            padding: 25px;
+        }
+
+        .program-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .program-content p {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+
+        /* Team Section */
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-members {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto; 
+}
+
+.team-member {
+    width: 350px;
+    height: 400px;
+    background: white;
+    border-radius: 15px;
+    padding: 0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+       .member-photo {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 15px;
+    margin: 0;
+}
+
+.member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.team-member:hover .member-photo img {
+    transform: scale(1.1);
+}
+
+        .member-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--secondary);
+        }
+
+        .member-info p {
+            color: var(--gray);
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .member-social {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .member-social a {
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .member-social a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background-color: #f1f5f9;
+        }
+
+        .gallery-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* INI YANG PENTING */
+            gap: 25px;
+}
+
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: flex;
+            gap: 40px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            background-color: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .contact-text h4 {
+            margin-bottom: 5px;
+            color: var(--secondary);
+        }
+
+        .contact-form {
+            flex: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.1);
+            outline: none;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+
+/* Styling Dasar Slider Container */
+.slider-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 0;
+  
+  /* Efek menghilang halus otomatis di ujung kiri dan kanan */
+  mask-image: linear-gradient(to right, transparent, black 30%, black 70%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 30%, black 70%, transparent);
+}
+
+/* KUNCI UTAMA: Biarkan lebar otomatis agar tidak ada ruang kosong */
+.slider-track {
+  display: flex;
+  width: max-content; /* Mengikuti total panjang gambar asli + duplikat */
+  margin-bottom: 25px; /* Jarak antar baris atas dan bawah */
+}
+
+/* Jeda animasi saat kursor diarahkan ke baris gambar */
+.slide img:hover {
+  transform: scale(1.15); /* Gambar membesar sebesar 15% dari ukuran asli */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Opsional: mempertegas bayangan saat membesar */
+  cursor: pointer;
+}
+
+/* Box Tiap Gambar */
+.slide {
+  width: 330px;
+  height: 250px;
+  margin: 0 15px; /* Memberikan jarak antar gambar yang seimbang */
+  flex-shrink: 0;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10% ;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.4s ease; 
+}
+
+/* === PENGATURAN ANIMASI PER BARIS === */
+
+/* Baris Atas Bergerak ke Kiri */
+.row-left {
+  animation: scrollLeft 60s linear infinite;
+}
+
+/* Baris Bawah Bergerak ke Kanan */
+.row-right {
+  animation: scrollRight 60s linear infinite;
+}
+
+/* === LOGIKA ANIMASI INFINITE LOOP === */
+
+/* Gerak Kanan-ke-Kiri */
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Cukup geser sebesar -50% (setengah dari total track/duplikatnya) */
+    transform: translateX(-50%); 
+  }
+}
+
+/* Gerak Kiri-ke-Kanan */
+@keyframes scrollRight {
+  0% {
+    /* Memulai dari posisi tergeser setengah track */
+    transform: translateX(-50%); 
+  }
+  100% {
+    transform: translateX(0); 
+  }
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="image/TRANSPARENT-BENERAN.png">
+                    <img src="image/satyavira (1).png">
+                    <div class="logo-text">
+                        <h1>MPK/OSIS</h1>
+                        <p>SMA ANGKASA 1 JAKARTA</p>
+                    </div>
+                </div>
+                <nav>
+                    <div class="mobile-menu">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#about">Visi</a></li>
+                        <li><a href="#programs">Program</a></li>
+                        <li><a href="#Pembina">Pembina</a></li>
+                        <li><a href="#team">Pengurus</a></li>
+                        <li><a href="#gallery">Galeri</a></li>
+                        <li><a href="#contact">Kontak</a></li>
+                        
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+ <!-- Hero Section -->
+    <section class="hero-section" id="home">
+  <div class="hero-container">
+    <div class="hero-content">
+      <span class="hero-tag">SATYAVIRA NAWASENA</span>
+      <h1 class="hero-title">MPK/OSIS <br><span class="highlight-yellow">SMA ANGKASA 1 JAKARTA</span></h1>
+      <p class="hero-description">Bersatu untuk tumbuh berkembang kuat dan kebersamaan.</p>
+      <div class="hero-buttons">
+        <a href="#about" class="btn btn-yellow">Visi Kami</a>
+        <a href="#programs" class="btn btn-outline">Lihat Program</a>
+      </div>
+    </div>
+    <div class="hero-logo">
+      <img src="image/satyavira (1).png" alt="Logo SATYAVIRA">
+    </div>
+
+  </div>
+</section>
+
+<!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Visi & Misi</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>SATYAVIRA NAWASENA</h3>
+                    <p>OSIS (Organisasi Siswa Intra Sekolah) SMA Angkasa 1 adalah organisasi resmi di sekolah yang menjadi wadah bagi siswa untuk mengembangkan bakat, minat, dan kepemimpinan.</p>
+                    <p>Kami berkomitmen untuk menciptakan lingkungan sekolah yang positif, mendukung kegiatan siswa, dan menjadi jembatan antara siswa dengan pihak sekolah.</p>
+                    <p>Melalui berbagai program dan kegiatan, OSIS SMA Angkasa 1 bertujuan untuk membentuk siswa yang berkarakter, kreatif, dan bertanggung jawab.</p>
+                    <a href="#programs" class="btn btn-yellow">Program</a>
+                </div>
+                <div class="about-image">
+                    <img src="image/FOTO TENTANG.png">
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <!-- Programs Section -->
+    <section class="section programs" id="programs">
+        <div class="container">
+            <div class="section-title">
+                <h2>Program Kerja</h2>
+            </div>
+            <div class="program-cards">
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="image/BOING.png">
+                    </div>
+                    <div class="program-content">
+                        <h3>BOING CUP</h3>
+                        <p>Kegiatan yang mendukung peningkatan prestasi akademik siswa seperti bimbingan belajar, seminar pendidikan, dan lomba mata pelajaran.</p>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="image/ESPACE.png">
+                    </div>
+                    <div class="program-content">
+                        <h3>ESPACE RUN</h3>
+                        <p>Mengembangkan bakat olahraga siswa melalui turnamen internal, latihan rutin, dan partisipasi dalam kompetisi antar sekolah.</p>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="image/COLOMUS.png">
+                    </div>
+                    <div class="program-content">
+                        <h3>COLOMUS</h3>
+                        <p>Menumbuhkan apresiasi seni dan budaya melalui pentas seni, workshop, dan kegiatan kreatif lainnya.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Pembina Section -->
+    <section class="Pembina"id="Pembina">
+        <div class="section-title">
+                <h2>Pembina MPK/OSIS</h2>
+            </div>
+    <div class="Pembina-cards">
+    
+        
+        <!-- Kartu 1 -->
+        <div class="Pembina-card">
+            <div class="Pembina-image">
+                <img src="image/satyavira (1).png" alt="Foto Pembina">
+            </div>
+            <div class="Pembina-content">
+                <h3>Dara Aulia Ruhiyat</h3>
+            </div>
+        </div>
+
+        <!-- Kartu 2 -->
+        <div class="Pembina-card">
+            <div class="Pembina-image">
+                <img src="image/satyavira (1).png" alt="Foto Pembina">
+            </div>
+            <div class="Pembina-content">
+                <h3>Rizki Firmansyah</h3>
+            </div>
+        </div>
+        <!-- Kartu 1 -->
+        <div class="Pembina-card">
+            <div class="Pembina-image">
+                <img src="image/satyavira (1).png" alt="Foto Pembina">
+            </div>
+            <div class="Pembina-content">
+                <h3>Kusriyanti</h3>
+            </div>
+        </div>
+
+        <!-- Kartu 2 -->
+        <div class="Pembina-card">
+            <div class="Pembina-image">
+                <img src="image/satyavira (1).png" alt="Foto Pembina">
+            </div>
+            <div class="Pembina-content">
+                <h3>Taruna</h3>
+            </div>
+        </div>
+
+    </div>
+</section>
+    
+    <!-- Team Section -->
+    <section class="section" id="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pengurus MPK/OSIS</h2>
+            </div>
+            <div class="team-members">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="image/IntiOSISFormal.JPG">
+                    </div>
+                    <div class="member-info">
+                        <h3>INTI OSIS</h3>
+                        <p>SMA Angkasa 1</p>
+                        <a href="DIVISIINTIOSIS.html" class="btn btn-yellow">Selengkapnya</a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="image/IntiMPKFormal.JPG">
+                    </div>
+                    <div class="member-info">
+                        <h3>INTI MPK</h3>
+                        <p>SMA Angkasa 1</p>
+                        <a href="DIVISIINTIMPK.html" class="btn btn-yellow">Selengkapnya</a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="image/AgamaFormal.JPG">
+                    </div>
+                    <div class="member-info">
+                        <h3>SEKBID 1</h3>
+                        <p>Agama</p>
+                        <a href="SEKBID 1.html" class="btn btn-yellow">Selengkapnya</a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="image/BelaFormal.JPG">
+                    </div>
+                    <div class="member-info">
+                        <h3>SEKBID 2</h3>
+                        <p>Bela Negara</p>
+                        <a href="SEKBID 2.html" class="btn btn-yellow">Selengkapnya</a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="image/OlahragaFormal.JPG">
+                    </div>
+                    <div class="member-info">
+                        <h3>SEKBID 3</h3>
+                        <p>Olaharaga</p>
+                        <a href="SEKBID 3.html" class="btn btn-yellow">Selengkapnya</a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="image/InforFormal.JPG">
+                    </div>
+                    <div class="member-info">
+                        <h3>SEKBID 4</h3>
+                        <p>Informatika</p>
+                        <a href="SEKBID 4.html" class="btn btn-yellow">Selengkapnya</a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="image/SeniFormal.JPG">
+                    </div>
+                    <div class="member-info">
+                        <h3>SEKBID 5</h3>
+                        <p>Kesenian</p>
+                        <a href="SEKBID 5.html" class="btn btn-yellow">Selengkapnya</a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="image/KwuFormal.JPG">
+                    </div>
+                    <div class="member-info">
+                        <h3>SEKBID 6</h3>
+                        <p>Kewirausaha</p>
+                        <a href="SEKBID 6.html" class="btn btn-yellow">Selengkapnya</a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="image/K3Formal.JPG">
+                    </div>
+                    <div class="member-info">
+                        <h3>SEKBID 7</h3>
+                        <p>K3</p>
+                        <a href="SEKBID 7.html" class="btn btn-yellow">Selengkapnya</a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="image/HumasFormal.JPG">
+                    </div>
+                    <div class="member-info">
+                        <h3>SEKBID 8</h3>
+                        <p>Humas</p>
+                        <a href="SEKBID 8.html" class="btn btn-yellow">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery Section -->
+    <section>
+    <div class="section-title"id="gallery">
+                <h2>Galeri</h2>
+            </div>
+  
+ <div class="slider-container">
+  
+  <!-- BARIS 1 (Ke Kiri) -->
+  <div class="slider-track row-left">
+    <!-- 5 Gambar Asli -->
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <!-- 5 Gambar Duplikat (Sama persis urutannya) -->
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+  </div>
+
+  <!-- BARIS 2 (Ke Kanan) -->
+  <div class="slider-track row-right">
+    <!-- 5 Gambar Asli -->
+    <!-- 5 Gambar Asli -->
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <!-- 5 Gambar Duplikat (Sama persis urutannya) -->
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+    <div class="slide"><img src="image/1920x1080.webp"></div>
+  </div>
+
+</div>
+    
+   
+
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Kontak dan Pesan</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Punya pesan untuk kami ?</h3>
+                    <p>Kami percaya bahwa setiap siswa memiliki suara yang berharga untuk membangun sekolah menjadi tempat yang lebih baik. Melalui halaman ini, OSIS membuka ruang bagi seluruh siswa untuk menyampaikan aspirasi, ide, saran, maupun kritik yang membangun. Setiap pesan akan kami dengarkan dengan sungguh-sungguh, karena perubahan besar berawal dari kepedulian kecil.</p>
+                    <p>Aspirasi yang kamu kirim akan diterima langsung oleh Tim Aspirasi OSIS dan akan kami tindaklanjuti dengan penuh tanggung jawab. Kami berjanji untuk menjaga kerahasiaan identitas setiap pengirim pesan, agar kamu dapat menyampaikan pendapat dengan jujur dan nyaman.
+
+                    Kamu bisa mengirimkan pesan tentang:
+
+                    Ide kegiatan sekolah yang ingin diadakan
+
+                    Saran untuk fasilitas atau kebersihan sekolah
+
+                    Masukan untuk program OSIS
+
+                    Ucapan terima kasih, semangat, atau motivasi
+
+                    Mari bersama-sama kita ciptakan lingkungan sekolah yang aktif, peduli, dan inspiratif.</p>
+                    <p>Klik tombol di bawah ini untuk menyampaikan aspirasi kamu!</p>
+                    <a href="#programs" class="btn btn-yellow">Kirim Pesan Sekarang</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>OSIS SMA Angkasa 1</h3>
+                    <p>Organisasi Siswa Intra Sekolah SMA Angkasa 1 berkomitmen untuk mengembangkan potensi siswa dan menciptakan lingkungan sekolah yang positif.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Menu Cepat</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#about">Tentang Kami</a></li>
+                        <li><a href="#programs">Program Kerja</a></li>
+                        <li><a href="#team">Pengurus OSIS</a></li>
+                        <li><a href="#gallery">Galeri</a></li>
+                        <li><a href="#contact">Kontak</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 MPK/OSIS SMA Angkasa 1. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu after clicking a link
+                    document.querySelector('nav ul').classList.remove('active');
+                }
+            });
+        });
+
+        // Form Submission
+        document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Terima kasih! Pesan Anda telah berhasil dikirim.');
+            this.reset();
+        });
+    </script>
+    <script>
+  window.addEventListener('scroll', function() {
+    // Mencari elemen <header> di HTML Anda
+    const header = document.querySelector('header');
+    
+    // Jika posisi scroll layar ke bawah melebihi 50px
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled'); // Menambahkan class .scrolled (solid gradient)
+    } else {
+      header.classList.remove('scrolled'); // Menghapus class .scrolled (kembali transparan)
+    }
+  });
+</script>
+</body>
+</html>

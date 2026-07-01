@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSIS SMA Angkasa 1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1a56db;
+            --secondary: #0f2e6f;
+            --accent: #ff6b35;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            margin-bottom: -10px;
+        }
+
+        .logo-text p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+      .hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
+                url('image/TRANSPARENT-BENERAN.png');
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #e55a2b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* About Section */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Programs Section */
+        .programs {
+            background-color: #f1f5f9;
+        }
+
+        .program-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .program-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .program-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .program-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .program-card:hover .program-image img {
+            transform: scale(1.1);
+        }
+
+        .program-content {
+            padding: 25px;
+        }
+
+        .program-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .program-content p {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+
+        /* Team Section */
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-members {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto; 
+}
+
+.team-member {
+    width: 300px;
+    background: white;
+    border-radius: 15px;
+    padding: 0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+       .member-photo {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 0;
+    margin: 0;
+}
+
+.member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.team-member:hover .member-photo img {
+    transform: scale(1.1);
+}
+
+        .member-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--secondary);
+        }
+
+        .member-info p {
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .member-social {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .member-social a {
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .member-social a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background-color: #f1f5f9;
+        }
+
+        .gallery-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* INI YANG PENTING */
+            gap: 25px;
+}
+
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: flex;
+            gap: 40px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            background-color: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .contact-text h4 {
+            margin-bottom: 5px;
+            color: var(--secondary);
+        }
+
+        .contact-form {
+            flex: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.1);
+            outline: none;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            justify-content: center; 
+            
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            color: rgb(0, 0, 0);
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content, .contact-content {
+                flex-direction: column;
+            }
+            
+            .about-image, .contact-info, .contact-form {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--secondary);
+                flex-direction: column;
+                padding: 20px;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="image/TRANSPARENT-BENERAN.png" >
+                    <img src="image/osis-sma.png" >
+                    <div class="logo-text">
+                        <h1>MPK/OSIS SMA ANGKASA 1</h1>
+                        <p>Official Website</p>
+                    </div>
+                </div>
+                <nav>
+                    <div class="mobile-menu">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="#team">Tentang</a></li>
+                        <li><a href="#programs">Galeri</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Boing Cup</h2>
+                <p>Organisasi yang berkomitmen untuk mengembangkan potensi siswa dan menciptakan lingkungan sekolah yang positif.</p>
+                <a href="index.html" class="btn">Kembali Ke Beranda</a>
+            </div>
+        </div>
+    </section>
+     <!-- Team Section -->
+    <section class="section" id="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>SEKBID 1 KEAGAMAAN</h2>
+            </div>
+            <div class="team-members">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="image/TRANSPARENT-BENERAN.png">
+                    </div>
+                    <div class="member-info">
+                        <h2>KETUA</h2>
+                        <h3>Bilqis Octa Navisha</h3>
+                        <p>Quotes</p>
+                        <div class="footer-social">
+                        <a href="DIVISI/DIVISIINTIOSIS.html" class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="image/TRANSPARENT-BENERAN.png">
+                    </div>
+                    <div class="member-info">
+                        <h2>KOMISIRIS</h2>
+                        <h3>Dhirgam Omar</h3>
+                        <p>Quotes</p>
+                        <div class="footer-social">
+                        <a href="DIVISI/DIVISIINTIOSIS.html" class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="image/TRANSPARENT-BENERAN.png">
+                    </div>
+                    <div class="member-info">
+                        <h2>ANGGOTA</h2>
+                        <h3>Khumaira El Millany Firdiaranti</h3>
+                        <p>Quotes</p>
+                        <div class="footer-social">
+                        <a href="DIVISI/DIVISIINTIOSIS.html" class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="image/TRANSPARENT-BENERAN.png">
+                    </div>
+                    <div class="member-info">
+                        <h2>ANGGOTA</h2>
+                        <h3>Aprilia Nur Rahma</h3>
+                        <p>Quotes</p>
+                        <div class="footer-social">
+                        <a href="DIVISI/DIVISIINTIOSIS.html" class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="image/TRANSPARENT-BENERAN.png">
+                    </div>
+                    <div class="member-info">
+                        <h2>ANGGOTA</h2>
+                        <h3>Alia Fatimah</h3>
+                        <p>Quotes</p>
+                        <div class="footer-social">
+                        <a href="DIVISI/DIVISIINTIOSIS.html" class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+     <!-- Programs Section -->
+    <section class="section programs" id="programs">
+        <div class="container">
+            <div class="section-title">
+                <h2>Program Kerja</h2>
+            </div>
+            <div class="program-cards">
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="-">
+                    </div>
+                    <div class="program-content">
+                        <h3>PODSKY SPECIAL RAMADHAN</h3>
+                        <p>Kegiatan yang mendukung peningkatan prestasi akademik siswa seperti bimbingan belajar, seminar pendidikan, dan lomba mata pelajaran.</p>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="-">
+                    </div>
+                    <div class="program-content">
+                        <h3>MAULID NABI</h3>
+                        <p>Menumbuhkan apresiasi seni dan budaya melalui pentas seni, workshop, dan kegiatan kreatif lainnya.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; 2025 MPK/OSIS SMA Angkasa 1. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu after clicking a link
+                    document.querySelector('nav ul').classList.remove('active');
+                }
+            });
+        });
+
+        // Form Submission
+        document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Terima kasih! Pesan Anda telah berhasil dikirim.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

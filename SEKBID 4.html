@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSIS SMA Angkasa 1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1a56db;
+            --secondary: #0f2e6f;
+            --accent: #ff8400;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+    /* MENGUBAH BACKGROUND AWAL: Menjadi transparan total */
+    background: transparent;
+    color: white;
+    padding: 1rem 0;
+    
+    /* MENGUBAH POSITION: Menggunakan fixed agar melayang sempurna di atas hero banner */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    
+    /* Menghapus box-shadow bawaan saat di atas agar tidak bergaris */
+    box-shadow: none; 
+    
+    /* Efek transisi halus saat perubahan warna */
+    transition: all 0.4s ease;
+}
+
+/* === KONDISI BARU: KETIKA HALAMAN DI-SCROLL === */
+header.scrolled {
+    /* Mengembalikan background gradient solid Anda saat di-scroll ke bawah */
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 0.7rem 0; /* Membuat header sedikit lebih ramping (estetik) */
+}
+
+/* Sisa kode CSS Anda di bawah ini tetap dipertahankan dengan penyesuaian transisi teks */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center; /* Diubah ke center agar gambar dan teks sejajar vertikal */
+    margin-left: -100px;
+    gap: 10px;
+}
+
+.logo img {
+    height: 70px;
+    width: auto;
+}
+
+.logo-text h1 {
+    font-size: 30px;
+    margin-bottom: -10px;
+    color: white; /* Memastikan warna teks tetap putih secara eksplisit */
+    font-family: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    transition: color 0.4s ease;
+}
+
+.logo-text p {
+    font-size: 20px;
+    opacity: 0.9;
+    color: white;
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    transition: color 0.4s ease;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    margin-right: -100px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+        /* Hero Section */
+      .hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('image/InfoBebas.JPG');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    padding: 0 10%;
+}
+
+.hero-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.hero-tag {
+    background-color:#ff8400;
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-left: -100px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    margin-left: -100px;
+}
+
+.highlight-yellow {
+    color: #ff8400;
+}
+
+
+.hero-description {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 30px;
+    margin-left: -100px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-left: -100px;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 12px 28px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-yellow {
+    background-color: #ff8400;
+    color: #ffffff;
+}
+
+.btn-yellow:hover {
+    background-color: #ff8400;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: #ff8400;
+    border: 1.5px solid #ff8400;
+}
+
+.btn-outline:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Sisi Kanan (Logo) */
+.hero-logo {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hero-logo img {
+    max-width: 420px; 
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.5)); 
+}
+
+
+@media (max-width: 992px) {
+    .hero-container {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    
+    .hero-logo {
+        justify-content: center;
+    }
+    
+    .hero-logo img {
+        max-width: 250px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+}
+
+        /* About Section */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+/* Styling Utama Section */
+.program-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* Container utama item */
+.program-container {
+  display: flex;
+  flex-direction: column;
+  gap: 60px; /* Jarak antar baris program kerja */
+}
+
+/* Setiap Baris Program Kerja */
+.program-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px; /* Jarak antara kolom gambar dan kolom teks */
+}
+
+/* Bagi ruang 50:50 secara adil */
+.program-image, .program-text {
+  flex: 1;
+  width: 50%;
+}
+
+/* Styling Gambar agar mirip seperti di contoh */
+.program-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px; /* Sudut melengkung halus */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Bayangan lembut */
+  object-fit: cover;
+}
+
+/* Styling Komponen Teks */
+.program-text .badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  background-color: #ff8400; /* Warna toska seperti di gambar */
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.program-text h3 {
+  font-size: 30px;
+  color: #1e293b;
+  margin-bottom: 15px;
+}
+
+.program-text p {
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  font-size: 20px;
+}
+
+.btn-detail {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff8400;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.btn-detail:hover {
+  background-color: #ff8400;
+}
+
+/* --------------------------------------------------------- */
+/* KUNCI UTAMA: MEMBALIK BARIS GENAP (BARIS 2, 4, 6, dst)      */
+/* --------------------------------------------------------- */
+.program-item:nth-child(even) {
+  flex-direction: row-reverse; /* Membalik visual: gambar ke kanan, teks ke kiri */
+}
+
+/* --------------------------------------------------------- */
+/* RESPONSIVE MOBILE (Supaya rapi saat dibuka di HP)          */
+/* --------------------------------------------------------- */
+@media (max-width: 768px) {
+  .program-item, .program-item:nth-child(even) {
+    flex-direction: column; /* Semuanya berbaris ke bawah di HP */
+    gap: 20px;
+  }}
+  
+  .program-image, .program-text {
+    width: 100%; /* Lebar penuh saat di layar HP */
+  }
+
+        /* Team Section */
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-members {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto; 
+}
+
+.team-member {
+    width: 300px;
+    height: 350px;
+    background: white;
+    border-radius: 15px;
+    padding: 0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+       .member-photo {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 0;
+    margin: 0;
+}
+
+.member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.team-member:hover .member-photo img {
+    transform: scale(1.1);
+}
+
+        .member-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--secondary);
+        }
+
+        .member-info p {
+            color: var(--gray);
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .member-social {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .member-social a {
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .member-social a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background-color: #f1f5f9;
+        }
+
+        .gallery-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* INI YANG PENTING */
+            gap: 25px;
+}
+
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: flex;
+            gap: 40px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            background-color: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .contact-text h4 {
+            margin-bottom: 5px;
+            color: var(--secondary);
+        }
+
+        .contact-form {
+            flex: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.1);
+            outline: none;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+
+/* Styling Dasar Slider Container */
+.slider-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 0;
+  
+  /* Efek menghilang halus otomatis di ujung kiri dan kanan */
+  mask-image: linear-gradient(to right, transparent, black 30%, black 70%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 30%, black 70%, transparent);
+}
+
+/* KUNCI UTAMA: Biarkan lebar otomatis agar tidak ada ruang kosong */
+.slider-track {
+  display: flex;
+  width: max-content; /* Mengikuti total panjang gambar asli + duplikat */
+  margin-bottom: 25px; /* Jarak antar baris atas dan bawah */
+}
+
+/* Jeda animasi saat kursor diarahkan ke baris gambar */
+.slide img:hover {
+  transform: scale(1.15); /* Gambar membesar sebesar 15% dari ukuran asli */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Opsional: mempertegas bayangan saat membesar */
+  cursor: pointer;
+}
+
+/* Box Tiap Gambar */
+.slide {
+  width: 230px;
+  height: 230px;
+  margin: 0 15px; /* Memberikan jarak antar gambar yang seimbang */
+  flex-shrink: 0;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.4s ease; 
+}
+
+/* === PENGATURAN ANIMASI PER BARIS === */
+
+/* Baris Atas Bergerak ke Kiri */
+.row-left {
+  animation: scrollLeft 60s linear infinite;
+}
+
+/* Baris Bawah Bergerak ke Kanan */
+.row-right {
+  animation: scrollRight 60s linear infinite;
+}
+
+/* === LOGIKA ANIMASI INFINITE LOOP === */
+
+/* Gerak Kanan-ke-Kiri */
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Cukup geser sebesar -50% (setengah dari total track/duplikatnya) */
+    transform: translateX(-50%); 
+  }
+}
+
+/* Gerak Kiri-ke-Kanan */
+@keyframes scrollRight {
+  0% {
+    /* Memulai dari posisi tergeser setengah track */
+    transform: translateX(-50%); 
+  }
+  100% {
+    transform: translateX(0); 
+  }
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="image/TRANSPARENT-BENERAN.png">
+                    <img src="image/satyavira (1).png">
+                    <div class="logo-text">
+                        <h1>MPK/OSIS</h1>
+                        <p>SMA ANGKASA 1 JAKARTA</p>
+                    </div>
+                </div>
+                <nav>
+                    <div class="mobile-menu">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="index.html">Tentang</a></li>
+                        <li><a href="index.html">Program</a></li>
+                        <li><a href="index.html">Pembina</a></li>
+                        <li><a href="index.html">Pengurus</a></li>
+                        <li><a href="index.html">Galeri</a></li>
+                        <li><a href="index.html">Kontak</a></li>
+                        
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+ <!-- Hero Section -->
+    <section class="hero-section" id="home">
+  <div class="hero-container">
+    <div class="hero-content">
+      <span class="hero-tag">SATYAVIRA NAWASENA</span>
+      <h1 class="hero-title">INFORMATIKA</h1>
+      <p class="hero-description">Bersatu untuk tumbuh berkembang kuat dan kebersamaan.</p>
+      <div class="hero-buttons">
+        <a href="#Member" class="btn btn-yellow">Anggota</a>
+        <a href="#Program" class="btn btn-outline">Program</a>
+      </div>
+    </div>
+  </div>
+</section>
+    <!-- Team Section -->
+    <section class="section" id="Member">
+        <div class="container">
+            <div class="section-title">
+                <h2>Anggota</h2>
+            </div>
+            <div class="team-members">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="image/TRANSPARENT-BENERAN.png">
+                    </div>
+                    <div class="member-info">
+                        <h3>Kabid</h3>
+                        <p>Attha Syauqi</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="image/TRANSPARENT-BENERAN.png">
+                    </div>
+                    <div class="member-info">
+                        <h3>Komisi</h3>
+                        <p>Khansa Raisa</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="image/TRANSPARENT-BENERAN.png">
+                    </div>
+                    <div class="member-info">
+                        <h3>Anggota</h3>
+                        <p>Luh Putu Quinn Sierra</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="image/TRANSPARENT-BENERAN.png">
+                    </div>
+                    <div class="member-info">
+                        <h3>Anggota</h3>
+                        <p>Abyaz Fazli</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="image/TRANSPARENT-BENERAN.png">
+                    </div>
+                    <div class="member-info">
+                        <h3>Anggota</h3>
+                        <p>Panggih Dwi Abimanyu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Program Section -->
+    <section class="program-section"id="Program">
+  <!-- Judul Section -->
+  <div class="section-title">
+    <h2>Program <span>Kerja</span></h2>
+  </div>
+
+  <div class="program-container">
+    
+    <!-- ITEM 1 (Otomatis: Gambar Kiri, Teks Kanan) -->
+    <div class="program-item">
+      <div class="program-image">
+        <img src="image/1920x1080.webp" alt="Foto Kegiatan 3S">
+      </div>
+      <div class="program-text">
+        <span class="badge">1</span>
+        <h3>BROADSKY</h3>
+        <p>Lorem Ipsum is a standard placeholder text used in design and publishing, originating from a scrambled version of Cicero's 1st-century BC work "De Finibus Bonorum et Malorum."</p>
+      </div>
+    </div>
+
+    <!-- ITEM 2 (Otomatis Dibalik oleh CSS: Teks Kiri, Gambar Kanan) -->
+    <div class="program-item">
+      <div class="program-image">
+        <img src="image/1920x1080.webp" alt="Foto Kegiatan POSPERIYA">
+      </div>
+      <div class="program-text">
+        <span class="badge">2</span>
+        <h3>SKYFM</h3>
+        <p>Lorem Ipsum is a standard placeholder text used in design and publishing, originating from a scrambled version of Cicero's 1st-century BC work "De Finibus Bonorum et Malorum."</p>
+      </div>
+    </div>
+
+      <div class="program-container">
+    
+    <!-- ITEM 3 (Otomatis: Gambar Kiri, Teks Kanan) -->
+    <div class="program-item">
+      <div class="program-image">
+        <img src="image/1920x1080.webp" alt="Foto Kegiatan 3S">
+      </div>
+      <div class="program-text">
+        <span class="badge">3</span>
+        <h3>SKYWEB</h3>
+        <p>Lorem Ipsum is a standard placeholder text used in design and publishing, originating from a scrambled version of Cicero's 1st-century BC work "De Finibus Bonorum et Malorum."</p>
+      </div>
+    </div>
+<!-- ITEM 4 (Otomatis: Gambar Kiri, Teks Kanan) -->
+    <div class="program-item">
+      <div class="program-image">
+        <img src="image/1920x1080.webp" alt="Foto Kegiatan 3S">
+      </div>
+      <div class="program-text">
+        <span class="badge">4</span>
+        <h3>PODSKY</h3>
+        <p>Lorem Ipsum is a standard placeholder text used in design and publishing, originating from a scrambled version of Cicero's 1st-century BC work "De Finibus Bonorum et Malorum."</p>
+      </div>
+    </div>
+  </div>
+</section>
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu after clicking a link
+                    document.querySelector('nav ul').classList.remove('active');
+                }
+            });
+        });
+
+        // Form Submission
+        document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Terima kasih! Pesan Anda telah berhasil dikirim.');
+            this.reset();
+        });
+    </script>
+    <script>
+  window.addEventListener('scroll', function() {
+    // Mencari elemen <header> di HTML Anda
+    const header = document.querySelector('header');
+    
+    // Jika posisi scroll layar ke bawah melebihi 50px
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled'); // Menambahkan class .scrolled (solid gradient)
+    } else {
+      header.classList.remove('scrolled'); // Menghapus class .scrolled (kembali transparan)
+    }
+  });
+</script>
+</body>
+</html>
